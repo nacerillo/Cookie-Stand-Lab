@@ -1,32 +1,62 @@
 'use strict';
 
-var opHours = ["6am:  ", "7am:  ", "8am:  ", "9am:  ", "10am:  ", "11am:  ","12pm:  "];
+var opHours = ["6am:  ", "7am:  ", "8am:  ", "9am:  ", "10am:  ", "11am:  ","12pm:  ", "1pm:  ", "2pm:  ", "3pm:  ", "4pm:  "];
 
-
-  function Location(name, min_cust, max_cust, average_cpc) {
+function Location(name, min_cust, max_cust, average_cpc) {
+    this.name = name;
     this.min_cust = min_cust;
     this.max_cust = max_cust;
     this.average_cpc = average_cpc;
 
     this.generateCustomers = function () {
-      return Math.floor(Math.random() * (this.max_cust - this.min_cust + 1)) + this.min_cust;
+    //generates a random number of customers when called.
+     return Math.floor(Math.random() * (this.max_cust - this.min_cust + 1)) + this.min_cust;
     };
+
     this.generateResults = function(){
+
         var salesArray = [];
         var total = 0;
-       for(var i = 0; i < opHours.length; i++)
-       {
-       // console.log(this.generateCustomers())
+
+        for(var i = 0; i < opHours.length; i++){
             var amount = Math.floor(this.average_cpc * this.generateCustomers());
-    // salesArray.push(opHours[i] + " " + `${average_cpc * this.generateCustomers()}`)
-            salesArray.push(opHours[i] + " " + `${amount}`);
+            salesArray.push(`${amount}`);
             total += amount;
        }
-        salesArray.push("total sales: " + total );
-        console.log(salesArray);
+
+        salesArray.push( total );
+       // console.log(salesArray);
         return salesArray;
     };
-  }
+
+
+
+var array  = [23,24,25,35,25,25];
+var num = 3;
+
+
+
+    
+    this.render = function(n,bodyElement){
+        var locResults = this.generateResults();
+        console.log(locResults);
+        var rowElement = document.createElement('tr');
+        var headElement = document.createElement('th');
+        headElement.textContent = n;
+        console.log(headElement.textContent)
+        rowElement.appendChild(headElement);
+        //var listElement = document.createElement('ul');
+    
+        for(var x = 0; x < locResults.length;x++ ){
+            var cellItem = document.createElement('td');
+            cellItem.textContent = locResults[x];
+            rowElement.appendChild(cellItem);
+        }
+        bodyElement.appendChild(rowElement);
+    }
+
+
+}
     var Location1 = new Location("Seattle",23,65,6.3);
     var Location2 = new Location("Tokyo",3,24,1.2);
     var Location3 = new Location("Dubai",11,38,3.7);
@@ -152,22 +182,50 @@ var Location5 = {
 
 
 var objArray = [Location2, Location1,Location3, Location4, Location5];
-var divElement = document.getElementById('salesdata');
+var tableElement = document.getElementById('salestable');
+
+var bodyElement = document.getElementById('tbody');
+var headRow = document.createElement('tr');
+var tableheader = document.getElementById('thead');
+//Set up Time Header for each Row
+var emptyHeader = document.createElement('th');
+emptyHeader.textContent = "";
+headRow.appendChild(emptyHeader);
+for(var j = 0; j < opHours.length; j++){
+    var hourElement = document.createElement('th');
+    hourElement.textContent = opHours[j];
+    headRow.appendChild(hourElement);
+}
+
+var totalElement = document.createElement('th');
+totalElement.textContent = "Daily Total Sales";
+headRow.appendChild(totalElement);
+tableheader.appendChild(headRow);
+//tableheader.appendChild(timerowElement);
+tableElement.appendChild(tableheader);
+//Set Totals Sails Header
+
+/*function BuildDataRows() */
+//Set sales info for each location row
 for(var i = 0; i < objArray.length; i++)
 {
-    var locResults = objArray[i].generateResults();
+    var object = objArray[i];
+    objArray[i].render(object.name,bodyElement);
+    /*var locResults = objArray[i].generateResults();
     console.log(locResults);
-    var h3Element = document.createElement('h3');
-    h3Element.textContent = objArray[i].name;
-    divElement.appendChild(h3Element);
-    var listElement = document.createElement('ul');
+    var rowElement = document.createElement('tr');
+    var headElement = document.createElement('th');
+    headElement.textContent = objArray[i].name;
+    console.log(headElement.textContent)
+    rowElement.appendChild(headElement);
+    //var listElement = document.createElement('ul');
 
     for(var x = 0; x < locResults.length;x++ ){
-        var listItem = document.createElement('li');
-        listItem.textContent = locResults[x];
-        listElement.appendChild(listItem);
+        var cellItem = document.createElement('td');
+        cellItem.textContent = locResults[x];
+        rowElement.appendChild(cellItem);
     }
-    divElement.appendChild(listElement);
+    bodyElement.appendChild(rowElement);*/
 }
 
 
