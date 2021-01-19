@@ -1,6 +1,6 @@
 'use strict';
 
-var opHours = ["6am", "7am", "8am", "9am", "10am", "11am","12pm"];
+var opHours = ["6am:  ", "7am:  ", "8am:  ", "9am:  ", "10am:  ", "11am:  ","12pm:  "];
 var Location1 = {
     name: "Seattle",
     min_cust: 23,
