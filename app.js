@@ -1,7 +1,39 @@
 'use strict';
 
 var opHours = ["6am:  ", "7am:  ", "8am:  ", "9am:  ", "10am:  ", "11am:  ","12pm:  "];
-var Location1 = {
+
+
+  function Location(name, min_cust, max_cust, average_cpc) {
+    this.min_cust = min_cust;
+    this.max_cust = max_cust;
+    this.average_cpc = average_cpc;
+
+    this.generateCustomers = function () {
+      return Math.floor(Math.random() * (this.max_cust - this.min_cust + 1)) + this.min_cust;
+    };
+    this.generateResults = function(){
+        var salesArray = [];
+        var total = 0;
+       for(var i = 0; i < opHours.length; i++)
+       {
+       // console.log(this.generateCustomers())
+            var amount = Math.floor(this.average_cpc * this.generateCustomers());
+    // salesArray.push(opHours[i] + " " + `${average_cpc * this.generateCustomers()}`)
+            salesArray.push(opHours[i] + " " + `${amount}`);
+            total += amount;
+       }
+        salesArray.push("total sales: " + total );
+        console.log(salesArray);
+        return salesArray;
+    };
+  }
+    var Location1 = new Location("Seattle",23,65,6.3);
+    var Location2 = new Location("Tokyo",3,24,1.2);
+    var Location3 = new Location("Dubai",11,38,3.7);
+    var Location4 = new Location("Paris",20,38,3.7);
+    var Location5 = new Location("Lima",2,16,4.6);
+
+/*var Location1 = {
     name: "Seattle",
     min_cust: 23,
     max_cust: 65,
@@ -115,7 +147,7 @@ var Location5 = {
         return salesArray;
     }
     
-};
+};*/
 
 
 
@@ -138,6 +170,13 @@ for(var i = 0; i < objArray.length; i++)
     divElement.appendChild(listElement);
 }
 
+
+/*function createContent(elementType, content)
+{
+var item = document.createElement(elemenType);
+item.textContent = content //textContent = property
+return item;
+}*/
 
 
 
