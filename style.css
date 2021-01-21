@@ -1,0 +1,12 @@
+td,
+#locName {
+  border: 1px solid black;
+}
+table {
+  border-collapse: collapse;
+}
+
+#shirt {
+  width: 10%;
+  height: 10%;
+}
