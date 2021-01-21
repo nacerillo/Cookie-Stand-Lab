@@ -48,7 +48,7 @@ function Location(name, min_cust, max_cust, average_cpc) {
             rowElement.appendChild(cellItem);
         }
         bodyElement.appendChild(rowElement);
-    }
+    };
 
 
 }
