@@ -10,10 +10,34 @@
   <header>
 
     <h1>Salmon Cookies</h1>
-    <link href = "/Users/nicholascerillo/Desktop/Codefellows-Labs/Cookie-Stand/Cookie-Stand-Lab/index.html">
+    <a href= "index.html" > Back to Home</a>
   </header>
   <main>
     <h2>Stores Sales</h2>
+    <form id="sales-form">
+
+      <fieldset>
+        Add New Location
+        <label>
+          Name
+          <input type="text" name="name">
+        </label>
+        <label>
+          Max Customers
+          <input type="numver" name="max">
+        </label>
+        <label>
+          Min Customers
+          <input type="number" name="min">
+        </label>
+        <label>
+          Average Purchase Per Person
+          <input type="number" name="average">
+        </label>
+      </fieldset>
+      <button type="submit">Submit Form</button>
+    </form>
+  
     <div id="salesdata">
      
       <table id = "salestable">

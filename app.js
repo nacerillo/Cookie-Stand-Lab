@@ -26,7 +26,7 @@ function Location(name, min_cust, max_cust, average_cpc) {
 
         salesArray.push( total );
         global.push(salesArray);
-       // console.log(salesArray);
+      //  console.log(global);
         return salesArray;
     };
 
@@ -60,12 +60,10 @@ function Location(name, min_cust, max_cust, average_cpc) {
 
 var objArray = [Location2, Location1,Location3, Location4, Location5];
 var tableElement = document.getElementById('salestable');
-var bodyElement = document.getElementById('tbody');
-
-
-var headRow = document.createElement('tr');
 var tableheader = document.getElementById('thead');
+var headRow = document.createElement('tr');
 
+var bodyElement = document.getElementById('tbody');
 
 //Render Header
 var emptyHeader = document.createElement('th');
@@ -83,36 +81,69 @@ headRow.appendChild(totalElement);
 tableheader.appendChild(headRow);
 tableElement.appendChild(tableheader);
 
+var formElement = document.getElementById('sales-form');
+formElement.addEventListener('submit', function (event) {
+    event.preventDefault();
+    console.log(event.target.name.value);
+    console.log(event.target.max.value);
+    console.log(event.target.min.value);
+    console.log(event.target.average.value);
+  
+    var name = event.target.name.value;
+    var min = parseFloat(event.target.max.value);
+    var max = parseFloat(event.target.min.value)
+    var average = parseFloat(event.target.average.value)
+  
+    var newLocation = new Location(name, max, min,average);
+  
+    objArray.push(newLocation);
+   // console.log(objArray);
+    newLocation.render(newLocation.name,bodyElement);
+    clear();
+    
+  });
+
+
+  function clear() {
+    document.getElementById("tfoot").innerHTML = "";
+    renderFooter(tableElement);
+
+}
 
 
 //Render Body Data
-for(var i = 0; i < objArray.length; i++)
-{
+
+    for(var i = 0; i < objArray.length; i++)
+    {
     var object = objArray[i];
     objArray[i].render(object.name,bodyElement);
-}
-console.log(global);
+    }
+
+//Render Footer
+renderFooter(tableElement);
+
 
 
 //Render Footer Data
-var footRow = document.createElement('tr');
-var footElement = document.getElementById('tfoot');
-var headFoot = document.createElement('th');
-headFoot.textContent = "Hourly Total";
-
-// console.log(headElement.textContent)
-footRow.appendChild(headFoot);
-footElement.appendChild(footRow);
-tableElement.append(footElement);
-for(var q = 0; q < opHours.length; q++){
-    var hourlyTotal = 0;
-    for(var z = 0; z < 5; z++){
-        hourlyTotal = hourlyTotal + parseInt(global[z][q]);
+   function renderFooter(tableElement){
+       console.log(global);
+    var footRow = document.createElement('tr');
+    var footElement = document.getElementById('tfoot');
+    var headFoot = document.createElement('th');
+    headFoot.textContent = "Hourly Total";
+    footRow.appendChild(headFoot);
+    footElement.appendChild(footRow);
+    tableElement.append(footElement);
+        for(var q = 0; q < opHours.length; q++){
+            var hourlyTotal = 0;
+            for(var z = 0; z < global.length; z++){
+            hourlyTotal = hourlyTotal + parseInt(global[z][q]);
        // console.log(hourlyTotal);  
-    }
-    var footData = document.createElement('td');
-       footData.textContent = hourlyTotal;
-       footRow.appendChild(footData);
-    console.log(q + "  " + global.length);
+            }
+            var footData = document.createElement('td');
+            footData.textContent = hourlyTotal;
+            footRow.appendChild(footData);
+          //  console.log(q + "  " + global.length);
     
+    }
 }
