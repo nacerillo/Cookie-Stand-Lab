@@ -29,7 +29,6 @@ function Location(name, min_cust, max_cust, average_cpc) {
       //  console.log(global);
         return salesArray;
     };
-
     
     this.render = function(n,bodyElement){
         var locResults = this.generateResults();

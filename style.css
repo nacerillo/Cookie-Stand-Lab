@@ -3,7 +3,12 @@ td,
   border: 1px solid black;
 }
 table {
+  font-family: Arial, sans-serif;
   border-collapse: collapse;
+}
+thead {
+  font-size: larger;
+  font-family: Helvetica, sans-serif;
 }
 
 #shirt {
