@@ -1,5 +1,10 @@
 body {
+  font-family: Georgia, serif;
   background-color: rgb(235, 191, 110);
+}
+h2 {
+  color: brown;
+  font-family: Georgia, serif;
 }
 #navtop {
   background-color: rgb(26, 167, 26);
@@ -22,8 +27,7 @@ body {
   width: 10%;
 }
 #col1,
-#col2,
-#col3 {
+#col2 {
   float: left;
   width: 300px;
   margin-top: 1%;
@@ -67,4 +71,15 @@ h1 {
 #merch {
   width: 30%;
   height: 30%;
+}
+p {
+  font-family: Georgia, serif;
+}
+p::first-line {
+  font-size: larger;
+  color: rgb(247, 236, 91);
+}
+h3 {
+  font-size: larger;
+  color: rgb(247, 236, 91);
 }
