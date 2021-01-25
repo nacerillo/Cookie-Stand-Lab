@@ -1,14 +1,30 @@
-td,
+body {
+  background-color: rgb(235, 191, 110);
+}
+td {
+  border: 1px solid black;
+  border: 1px solid black;
+  background-color: rgb(252, 120, 120);
+}
 #locName {
   border: 1px solid black;
+  color: green;
 }
 table {
-  font-family: Arial, sans-serif;
+  border: 1px solid black;
+  font-family: Helvetica, sans-serif, sans-serif;
   border-collapse: collapse;
 }
 thead {
   font-size: larger;
   font-family: Helvetica, sans-serif;
+  color: green;
+}
+thead th {
+  border: 1px solid black;
+}
+tfoot th {
+  color: green;
 }
 
 #shirt {
